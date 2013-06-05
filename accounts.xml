@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.7.0_17" class="java.beans.XMLDecoder">
+ <object class="java.util.HashMap">
+  <void method="put">
+   <string>fflinstone</string>
+   <object class="edu.uw.danco.account.AccountImpl">
+    <void property="balance">
+     <int>853400</int>
+    </void>
+    <void property="name">
+     <string>fflinstone</string>
+    </void>
+    <void property="passwordHash">
+     <array class="byte" length="20">
+      <void index="0">
+       <byte>-29</byte>
+      </void>
+      <void index="1">
+       <byte>-118</byte>
+      </void>
+      <void index="2">
+       <byte>-46</byte>
+      </void>
+      <void index="3">
+       <byte>20</byte>
+      </void>
+      <void index="4">
+       <byte>-108</byte>
+      </void>
+      <void index="5">
+       <byte>61</byte>
+      </void>
+      <void index="6">
+       <byte>-86</byte>
+      </void>
+      <void index="7">
+       <byte>-47</byte>
+      </void>
+      <void index="8">
+       <byte>-42</byte>
+      </void>
+      <void index="9">
+       <byte>76</byte>
+      </void>
+      <void index="10">
+       <byte>16</byte>
+      </void>
+      <void index="11">
+       <byte>47</byte>
+      </void>
+      <void index="12">
+       <byte>-82</byte>
+      </void>
+      <void index="13">
+       <byte>-62</byte>
+      </void>
+      <void index="14">
+       <byte>-99</byte>
+      </void>
+      <void index="15">
+       <byte>-28</byte>
+      </void>
+      <void index="16">
+       <byte>-81</byte>
+      </void>
+      <void index="17">
+       <byte>-23</byte>
+      </void>
+      <void index="18">
+       <byte>-38</byte>
+      </void>
+      <void index="19">
+       <byte>61</byte>
+      </void>
+     </array>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>
