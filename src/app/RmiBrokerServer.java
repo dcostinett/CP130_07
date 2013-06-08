@@ -3,6 +3,7 @@ package app;
 import edu.uw.danco.remote.RemoteBrokerGateway;
 import edu.uw.danco.remote.RemoteBrokerGatewayImpl;
 import edu.uw.danco.remote.RemoteBrokerSession;
+import edu.uw.ext.framework.exchange.StockExchangeSpi;
 
 import java.rmi.RMISecurityManager;
 import java.rmi.registry.LocateRegistry;
@@ -35,8 +36,10 @@ public class RmiBrokerServer {
         //System.setSecurityManager(new RMISecurityManager());
         try {
             Registry reg = LocateRegistry.createRegistry(REGISTRY_PORT);
+            StockExchangeSpi exchange = ExchangeFactory.newTestStockExchange();
+            exchange.open();
 
-            RemoteBrokerGateway server = new RemoteBrokerGatewayImpl(ExchangeFactory.newTestStockExchange());
+            RemoteBrokerGateway server = new RemoteBrokerGatewayImpl(exchange);
             reg.rebind(SERVER_NAME, server);
         }
         catch(Exception e) {

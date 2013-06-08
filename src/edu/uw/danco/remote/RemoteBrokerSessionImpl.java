@@ -79,12 +79,16 @@ public class RemoteBrokerSessionImpl extends UnicastRemoteObject implements Remo
 
     /**
      *
-     * @param order - the market order
+     * @param accountId
+     * @param numberOfShares
+     * @param ticker
      * @throws RemoteException
      */
     @Override
-    public void placeMarketBuyOrder(final MarketBuyOrder order) throws RemoteException {
+    public void placeMarketBuyOrder(final String accountId, final int numberOfShares, final String ticker)
+            throws RemoteException {
         try {
+            final MarketBuyOrder order = new MarketBuyOrder(accountId, numberOfShares, ticker);
             LOGGER.info("Placing MarketBuyOrder: " + order);
             broker.placeOrder(order);
         } catch (BrokerException e) {
@@ -95,12 +99,16 @@ public class RemoteBrokerSessionImpl extends UnicastRemoteObject implements Remo
 
     /**
      *
-     * @param order - the market order
+     * @param accountId
+     * @param numberOfShares
+     * @param ticker
      * @throws RemoteException
      */
     @Override
-    public void placeMarketSellOrder(final MarketSellOrder order) throws RemoteException {
+    public void placeMarketSellOrder(final String accountId, final int numberOfShares, final String ticker)
+            throws RemoteException {
         try {
+            final MarketSellOrder order = new MarketSellOrder(accountId, numberOfShares, ticker);
             LOGGER.info("Placing MarketSellOrder: " + order);
             broker.placeOrder(order);
         } catch (BrokerException e) {
@@ -111,12 +119,20 @@ public class RemoteBrokerSessionImpl extends UnicastRemoteObject implements Remo
 
     /**
      *
-     * @param order - the stop buy order
+     * @param accountId
+     * @param numberOfShares
+     * @param ticker
+     * @param stopPrice
      * @throws RemoteException
      */
     @Override
-    public void placeStopBuyOrder(final StopBuyOrder order) throws RemoteException {
+    public void placeStopBuyOrder(final String accountId,
+                                  final int numberOfShares,
+                                  final String ticker,
+                                  final int stopPrice) throws RemoteException {
         try {
+            final StopBuyOrder order =
+                    new StopBuyOrder(accountId, numberOfShares, ticker, stopPrice);
             LOGGER.info("Placing StopBuyOrder: " + order);
             broker.placeOrder(order);
         } catch (BrokerException e) {
@@ -127,12 +143,20 @@ public class RemoteBrokerSessionImpl extends UnicastRemoteObject implements Remo
 
     /**
      *
-     * @param order - the stop sell order
+     * @param accountId
+     * @param numberOfShares
+     * @param ticker
+     * @param stopPrice
      * @throws RemoteException
      */
     @Override
-    public void placeStopSellOrder(final StopSellOrder order) throws RemoteException {
+    public void placeStopSellOrder(final String accountId,
+                                   final int numberOfShares,
+                                   final String ticker,
+                                   final int stopPrice) throws RemoteException {
         try {
+            final StopSellOrder order =
+                    new StopSellOrder(accountId, numberOfShares, ticker, stopPrice);
             LOGGER.info("Placing StopSellOrder: " + order);
             broker.placeOrder(order);
         } catch (BrokerException e) {

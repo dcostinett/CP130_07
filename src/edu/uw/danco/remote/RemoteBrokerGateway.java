@@ -26,8 +26,8 @@ public interface RemoteBrokerGateway extends Remote {
      * @throws AccountException
      * @throws RemoteException
      */
-    RemoteBrokerSession createAccount(final String accountName,
-                                      final String password,
+    RemoteBrokerSession createAccount(String accountName,
+                                      String password,
                                       int balance)
             throws RemoteException;
 
@@ -39,7 +39,7 @@ public interface RemoteBrokerGateway extends Remote {
      * @return
      * @throws RemoteException
      */
-    RemoteBrokerSession login(final String username,
-                              final String password)
+    RemoteBrokerSession login(String username,
+                              String password)
             throws RemoteException;
 }

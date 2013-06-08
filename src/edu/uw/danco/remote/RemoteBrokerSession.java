@@ -20,44 +20,71 @@ public interface RemoteBrokerSession extends Remote {
      */
     int getBalance() throws RemoteException;
 
+
     /**
      * Deletes the session's account
      */
     void deleteAccount() throws RemoteException;
+
 
     /**
      * Obtains the current price of a stock and returns a StockQuote object
      * @param ticker - the stock symbol for which to get the quote
      * @return - a stock quote for the requested stock
      */
-    StockQuote requestQuote(final String ticker) throws RemoteException;
+    StockQuote requestQuote(String ticker) throws RemoteException;
+
 
     /**
      * Places a market buy order with the broker
-     * @param order - the market order
+     * @param accountId
+     * @param numberOfShares
+     * @param ticker
+     * @throws RemoteException
      */
-    void placeMarketBuyOrder(final MarketBuyOrder order) throws RemoteException;
+    void placeMarketBuyOrder(String accountId, int numberOfShares, String ticker) throws RemoteException;
+
 
     /**
      * Places a market sell order with the broker
-     * @param order - the market order
+     * @param accountId
+     * @param numberOfShares
+     * @param ticker
+     * @throws RemoteException
      */
-    void placeMarketSellOrder(final MarketSellOrder order) throws RemoteException;
+    void placeMarketSellOrder(String accountId, int numberOfShares, String ticker) throws RemoteException;
+
 
     /**
-     * Places a stop buy order with the broker
-     * @param order - the stop buy order
+     *
+     * @param accountId
+     * @param numberOfShares
+     * @param ticker
+     * @param stopPrice
+     * @throws RemoteException
      */
-    void placeStopBuyOrder(final StopBuyOrder order) throws RemoteException;
+    void placeStopBuyOrder(String accountId,
+                           int numberOfShares,
+                           String ticker,
+                           int stopPrice) throws RemoteException;
+
 
     /**
-     * Places a stop sell order with the broker
-     * @param order - the stop sell order
+     *
+     * @param accountId
+     * @param numberOfShares
+     * @param ticker
+     * @param stopPrice
+     * @throws RemoteException
      */
-    void placeStopSellOrder(final StopSellOrder order) throws RemoteException;
+    void placeStopSellOrder(String accountId,
+                            int numberOfShares,
+                            String ticker,
+                            int stopPrice) throws RemoteException;
+
 
     /**
-     * CLoses the session and releases any resources
+     * Closes the session and releases any resources
      */
     void close() throws RemoteException;
 }
