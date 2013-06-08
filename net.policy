@@ -1,0 +1,10 @@
+grant {
+ permission java.net.SocketPermission
+ "*:1025-65535", "connect,accept";
+ permission java.net.SocketPermission
+ "*:80", "connect";
+permission java.io.FilePermission
+ "/home/dcostinett/workspace/CP130/", "read";
+permission java.util.PropertyPermission
+ "/home/dcostinett/workspace/CP130/", "read";
+};
