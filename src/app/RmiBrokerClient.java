@@ -43,10 +43,12 @@ public class RmiBrokerClient {
 
     /**
      * Entry point for client
-     * @param args
+     * @param args - command line parameters
      */
     public static void main(String[] args) {
         String SERVER_NAME = "RemoteBrokerGateway";
+
+        RmiBrokerClient client = new RmiBrokerClient();
 
         RemoteBrokerSession session = null;
         try {
@@ -76,7 +78,7 @@ public class RmiBrokerClient {
             final MarketBuyOrder mbOrder = new MarketBuyOrder(accountId, 10, testTicker);
             session.placeMarketBuyOrder(accountId, 10, testTicker);
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 LOGGER.warning("Sleep interrupted.");
             }
@@ -87,7 +89,7 @@ public class RmiBrokerClient {
             final MarketSellOrder msOrder = new MarketSellOrder(accountId, 10, testTicker);
             session.placeMarketSellOrder(accountId, 10, testTicker);
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 LOGGER.warning("Sleep interrupted.");
             }
@@ -99,7 +101,7 @@ public class RmiBrokerClient {
                     new StopBuyOrder(accountId, 10, testTicker, session.requestQuote(testTicker).getPrice() - 1);
             session.placeStopBuyOrder(accountId, 10, testTicker, session.requestQuote(testTicker).getPrice() - 1);
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 LOGGER.warning("Sleep interrupted.");
             }
@@ -112,7 +114,7 @@ public class RmiBrokerClient {
                     new StopSellOrder(accountId, 10, testTicker, session.requestQuote(testTicker).getPrice() + 1);
             session.placeStopSellOrder(accountId, 10, testTicker, session.requestQuote(testTicker).getPrice() + 1);
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 LOGGER.warning("Sleep interrupted.");
             }
@@ -126,8 +128,10 @@ public class RmiBrokerClient {
             LOGGER.log(Level.SEVERE, e.getMessage(), e);
         } finally {
             try {
-                session.deleteAccount();
-                session.close();
+                if (session != null) {
+                    session.deleteAccount();
+                    session.close();
+                }
             } catch (RemoteException e) {
                 LOGGER.log(Level.SEVERE, e.getMessage(), e);
             }
