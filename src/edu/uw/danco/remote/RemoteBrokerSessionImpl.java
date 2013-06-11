@@ -37,8 +37,8 @@ public class RemoteBrokerSessionImpl extends UnicastRemoteObject implements Remo
 
 
     /**
-     *
-     * @return
+     * Gets the balance of the account associated with the session
+     * @return - the session's account balance
      * @throws RemoteException
      */
     @Override
@@ -48,7 +48,7 @@ public class RemoteBrokerSessionImpl extends UnicastRemoteObject implements Remo
 
 
     /**
-     *
+     * Delete the associated account
      * @throws RemoteException
      */
     @Override
@@ -57,6 +57,7 @@ public class RemoteBrokerSessionImpl extends UnicastRemoteObject implements Remo
             checkInvariants();
             LOGGER.info("Deleting account: " + account.getName());
             broker.deleteAccount(account.getName());
+            account = null;
         } catch (BrokerException e) {
             throw new RemoteException(e.getMessage(), e);
         }
@@ -64,7 +65,7 @@ public class RemoteBrokerSessionImpl extends UnicastRemoteObject implements Remo
 
 
     /**
-     *
+     * Get a quote for the specified ticker
      * @param ticker - the stock symbol for which to get the quote
      * @return - a StockQuote for the specified ticker
      * @throws RemoteException
@@ -82,7 +83,7 @@ public class RemoteBrokerSessionImpl extends UnicastRemoteObject implements Remo
 
 
     /**
-     *
+     * Buy the specified number of shares at market price for the specified ticker
      * @param numberOfShares
      * @param ticker
      * @throws RemoteException
@@ -102,7 +103,7 @@ public class RemoteBrokerSessionImpl extends UnicastRemoteObject implements Remo
 
 
     /**
-     *
+     * Sell the specified number of shares at market price for the specified ticker
      * @param numberOfShares
      * @param ticker
      * @throws RemoteException
@@ -122,7 +123,7 @@ public class RemoteBrokerSessionImpl extends UnicastRemoteObject implements Remo
 
 
     /**
-     *
+     * Place a StopBuyOrder for the specified number of shares at the specified price for the specified ticker
      * @param numberOfShares
      * @param ticker
      * @param stopPrice
@@ -145,7 +146,7 @@ public class RemoteBrokerSessionImpl extends UnicastRemoteObject implements Remo
 
 
     /**
-     *
+     * Place a StopSellOrder for the specified number of shares at the specified price for the specified ticker
      * @param numberOfShares
      * @param ticker
      * @param stopPrice
@@ -174,10 +175,12 @@ public class RemoteBrokerSessionImpl extends UnicastRemoteObject implements Remo
     @Override
     public void close() throws RemoteException {
         try {
-            checkInvariants();
             LOGGER.info("Closing the broker.");
-            broker.close();
-            account = null;
+            if (broker != null) {
+                broker.close();
+                account = null;
+                broker = null;
+            }
         } catch (BrokerException e) {
             throw new RemoteException(e.getMessage(), e);
         }
