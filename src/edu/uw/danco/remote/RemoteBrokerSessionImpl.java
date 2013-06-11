@@ -43,6 +43,7 @@ public class RemoteBrokerSessionImpl extends UnicastRemoteObject implements Remo
      */
     @Override
     public int getBalance() throws RemoteException {
+        checkInvariants();
         return account.getBalance();
     }
 
