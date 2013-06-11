@@ -24,6 +24,7 @@ public class RemoteBrokerSessionImpl extends UnicastRemoteObject implements Remo
     /** The account */
     private Account account;
 
+
     /**
      * Instantiate a remote session for the specified broker and account
      * @param broker
@@ -33,6 +34,7 @@ public class RemoteBrokerSessionImpl extends UnicastRemoteObject implements Remo
         this.broker = broker;
         this.account = account;
     }
+
 
     /**
      *
