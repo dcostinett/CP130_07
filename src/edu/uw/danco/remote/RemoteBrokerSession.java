@@ -37,48 +37,42 @@ public interface RemoteBrokerSession extends Remote {
 
     /**
      * Places a market buy order with the broker
-     * @param accountId
      * @param numberOfShares
      * @param ticker
      * @throws RemoteException
      */
-    void placeMarketBuyOrder(String accountId, int numberOfShares, String ticker) throws RemoteException;
+    void placeMarketBuyOrder(int numberOfShares, String ticker) throws RemoteException;
 
 
     /**
      * Places a market sell order with the broker
-     * @param accountId
      * @param numberOfShares
      * @param ticker
      * @throws RemoteException
      */
-    void placeMarketSellOrder(String accountId, int numberOfShares, String ticker) throws RemoteException;
+    void placeMarketSellOrder(int numberOfShares, String ticker) throws RemoteException;
 
 
     /**
      *
-     * @param accountId
      * @param numberOfShares
      * @param ticker
      * @param stopPrice
      * @throws RemoteException
      */
-    void placeStopBuyOrder(String accountId,
-                           int numberOfShares,
+    void placeStopBuyOrder(int numberOfShares,
                            String ticker,
                            int stopPrice) throws RemoteException;
 
 
     /**
      *
-     * @param accountId
      * @param numberOfShares
      * @param ticker
      * @param stopPrice
      * @throws RemoteException
      */
-    void placeStopSellOrder(String accountId,
-                            int numberOfShares,
+    void placeStopSellOrder(int numberOfShares,
                             String ticker,
                             int stopPrice) throws RemoteException;
 

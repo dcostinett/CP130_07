@@ -76,7 +76,7 @@ public class RmiBrokerClient {
             String testTicker = "F";
 
             final MarketBuyOrder mbOrder = new MarketBuyOrder(accountId, 10, testTicker);
-            session.placeMarketBuyOrder(accountId, 10, testTicker);
+            session.placeMarketBuyOrder(10, testTicker);
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
@@ -87,7 +87,7 @@ public class RmiBrokerClient {
             balance = session.getBalance();
 
             final MarketSellOrder msOrder = new MarketSellOrder(accountId, 10, testTicker);
-            session.placeMarketSellOrder(accountId, 10, testTicker);
+            session.placeMarketSellOrder(10, testTicker);
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
@@ -99,7 +99,7 @@ public class RmiBrokerClient {
 
             final StopBuyOrder sbOrder =
                     new StopBuyOrder(accountId, 10, testTicker, session.requestQuote(testTicker).getPrice() - 1);
-            session.placeStopBuyOrder(accountId, 10, testTicker, session.requestQuote(testTicker).getPrice() - 1);
+            session.placeStopBuyOrder(10, testTicker, session.requestQuote(testTicker).getPrice() - 1);
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
@@ -112,7 +112,7 @@ public class RmiBrokerClient {
 
             final StopSellOrder ssOrder =
                     new StopSellOrder(accountId, 10, testTicker, session.requestQuote(testTicker).getPrice() + 1);
-            session.placeStopSellOrder(accountId, 10, testTicker, session.requestQuote(testTicker).getPrice() + 1);
+            session.placeStopSellOrder(10, testTicker, session.requestQuote(testTicker).getPrice() + 1);
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
