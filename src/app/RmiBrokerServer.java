@@ -36,11 +36,14 @@ public class RmiBrokerServer {
         //System.setSecurityManager(new RMISecurityManager());
         try {
             Registry reg = LocateRegistry.createRegistry(REGISTRY_PORT);
+            // try to create, if it fails, use LocateRegistry.getRegistry
             StockExchangeSpi exchange = ExchangeFactory.newTestStockExchange();
             exchange.open();
 
             RemoteBrokerGateway server = new RemoteBrokerGatewayImpl(exchange);
             reg.rebind(SERVER_NAME, server);
+
+            // a real app should call unbind and unexport the unicast remote object upon completion.
         }
         catch(Exception e) {
             LOGGER.log(Level.SEVERE, e.getMessage(), e);
