@@ -30,7 +30,7 @@ public class RemoteBrokerSessionImpl extends UnicastRemoteObject implements Remo
      * @param broker
      * @param account
      */
-    public RemoteBrokerSessionImpl(Broker broker, Account account) throws RemoteException {
+    public RemoteBrokerSessionImpl(final Broker broker, final Account account) throws RemoteException {
         this.broker = broker;
         this.account = account;
     }
@@ -72,7 +72,7 @@ public class RemoteBrokerSessionImpl extends UnicastRemoteObject implements Remo
      * @throws RemoteException
      */
     @Override
-    public StockQuote requestQuote(String ticker) throws RemoteException {
+    public StockQuote requestQuote(final String ticker) throws RemoteException {
         try {
             checkInvariants();
             LOGGER.info("Quote requested for: " + ticker);
