@@ -181,6 +181,8 @@ public class RemoteBrokerSessionImpl extends UnicastRemoteObject implements Remo
                 broker.close();
                 account = null;
                 broker = null;
+
+                UnicastRemoteObject.unexportObject(this, true);
             }
         } catch (BrokerException e) {
             throw new RemoteException(e.getMessage(), e);
