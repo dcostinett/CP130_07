@@ -72,17 +72,17 @@ public class AccountDaoImpl implements AccountDao {
                     + " WHERE account_name = ?";
 
 
-    /** THe SQL used to delete all the accounts */
+    /** The SQL used to delete all the accounts */
     private static final String ACCOUNT_RESET_SQL = "DELETE from account";
 
 
     /** The logger */
     private static final Logger LOGGER = Logger.getLogger(AccountDaoImpl.class.getName());
 
-    /** THe name of the db to connect to */
+    /** The name of the db to connect to */
     private static final String JDBC_ACCOUNT_DB = "jdbc/AccountDb";
 
-    /** THe connection to the data store */
+    /** The connection to the data store */
     private Connection conn = null;
 
     /** Prepared statement used to retrieve account information */
